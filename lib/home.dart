@@ -74,7 +74,131 @@ class _homeState extends State<home> {
                           });
 
                       }, child: Text("PUZZLES",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
-                      TextButton(onPressed: (){}, child: Text("BUY PRO",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
+                      TextButton(onPressed: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                            return
+                              Dialog(
+                                child: Container(
+                                  height: bodyheidth*0.30,
+                                  width: width*0.50,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Container(  margin: EdgeInsets.fromLTRB(width*0.010, bodyheidth*0.020, 0, 0),child: Text("Benefits of pro Version",style: TextStyle(fontSize: bodyheidth*0.030,color: Colors.indigo,fontWeight: FontWeight.bold),))
+                                        ],
+                                      ),
+                                      Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Row(
+                                            // mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.fromLTRB(width*0.015, bodyheidth*0.020, 0, bodyheidth*0.008),
+                                                child: Text("1. No Ads",style: TextStyle(
+                                                    fontSize: bodyheidth*0.022,
+                                                    fontWeight: FontWeight.bold
+                                                )),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.fromLTRB(width*0.015, 0, 0, bodyheidth*0.008),
+                                                child: Text("2. No wait time for hint and skip",
+                                                    style: TextStyle(
+                                                        fontSize: bodyheidth*0.022,
+                                                        fontWeight: FontWeight.bold
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.fromLTRB(width*0.015, 0, 0, bodyheidth*0.008),
+                                                child: Text("3. Hint for every level",
+                                                    style: TextStyle(
+                                                        fontSize: bodyheidth*0.022,
+                                                        fontWeight: FontWeight.bold
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.fromLTRB(width*0.015, 0, 0, bodyheidth*0.008),
+                                                child: Text("4. No Solustion for every level",
+                                                    style: TextStyle(
+                                                        fontSize: bodyheidth*0.022,
+                                                        fontWeight: FontWeight.bold
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
+                                            alignment: Alignment.center,
+                                            height: bodyheidth*0.055,
+                                            width: width*0.25,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(width: 2,color: Colors.black26),
+                                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                gradient: LinearGradient(colors: gradient)
+                                            ),
+                                            child:InkWell(onTap: (){
+                                              setState(() {
+                                                Navigator.pop(context);
+                                              });
+                                            },child:  Text("BUY",style: TextStyle(
+                                              fontSize: bodyheidth*0.025,
+                                              //     fontWeight: FontWeight.bold,
+                                              //     fontStyle: FontStyle.italic
+                                            ))),
+                                          ),
+                                         Container(
+                                           margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
+                                           alignment: Alignment.center,
+                                           height: bodyheidth*0.055,
+                                           width: width*0.35,
+                                           decoration: BoxDecoration(
+                                               border: Border.all(width: 2,color: Colors.black26),
+                                               borderRadius: BorderRadius.all(Radius.circular(10)),
+                                               gradient: LinearGradient(colors: gradient)
+                                           ),
+                                           child:InkWell(onTap: (){
+                                             setState(() {
+                                               Navigator.pop(context);
+                                             });
+                                           },child:  Text("NO,THANKS",style: TextStyle(
+                                             fontSize: bodyheidth*0.025,
+                                             // fontWeight: FontWeight.bold,
+                                             // fontStyle: FontStyle.italic
+                                           ),)
+                                           ),
+                                         ),
+                                        ],
+
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },);
+
+                      }, child: Text("BUY PRO",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
 
                   ],
                 ),
@@ -148,3 +272,7 @@ class _homeState extends State<home> {
     );
   }
 }
+
+
+
+
