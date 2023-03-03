@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:puzzel/pazzlelevel.dart';
 
 import 'continue.dart';
 
@@ -64,9 +65,16 @@ class _homeState extends State<home> {
                            return continu();
                          },));
                        });
-                      }, child: Text("CONTINUE",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25),)),
-                      TextButton(onPressed: (){}, child: Text("PUXXLES",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25),)),
-                      TextButton(onPressed: (){}, child: Text("BUY PRO",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25),)),
+                      }, child: Text("CONTINUE",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
+                      TextButton(onPressed: (){
+                          setState(() {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return level();
+                            },));
+                          });
+
+                      }, child: Text("PUZZLES",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
+                      TextButton(onPressed: (){}, child: Text("BUY PRO",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
 
                   ],
                 ),
