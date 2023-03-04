@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:puzzel/config.dart';
 import 'package:puzzel/winpage.dart';
 
 class continu extends StatefulWidget {
-  const continu({Key? key}) : super(key: key);
+int level;
+continu(this.level);
 
   @override
   State<continu> createState() => _continuState();
 }
 
 class _continuState extends State<continu> {
+  String str="";
+  int leval=0;
+
   @override
+  void initState() {
+    // TODO: implement initState
+    leval=widget.level;
+  }
+
+  @override
+
+
+
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double heidth = MediaQuery.of(context).size.height;
@@ -18,7 +32,6 @@ class _continuState extends State<continu> {
     double bottombarheidth = MediaQuery.of(context).padding.bottom;
 
     double bodyheidth = heidth - statusbarheidth - bottombarheidth;
-
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -52,7 +65,7 @@ class _continuState extends State<continu> {
                             fit: BoxFit.fill
                         )
                     ),
-                    child: Text("Puzzle 1", textAlign: TextAlign.center,
+                    child: Text("Puzzle ${leval+1}", textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: bodyheidth*0.040,
                             fontStyle: FontStyle.italic,
@@ -73,7 +86,7 @@ class _continuState extends State<continu> {
                 width: width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("image/p1.png"),
+                        image: AssetImage("image/${config.img[leval]}"),
                         fit: BoxFit.fill
                     )
                 ),
@@ -93,30 +106,41 @@ class _continuState extends State<continu> {
                         Container(
                           height: bodyheidth * 0.05,
                           width: width * 0.60,
+                          padding: EdgeInsets.fromLTRB(3, 4, 0, 0),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                           ),
-
+                          child: Text("${str}",style:TextStyle(color: Colors.black,fontSize: 25)),
                         ),
-                        Container(
-                          height: bodyheidth * 0.05,
-                          width: width * 0.12,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              image: DecorationImage(
-                                  image: AssetImage("image/delete.png"),
-                                  fit: BoxFit.fill
-                              )
-                          ),
-                        ),
+                       InkWell( onTap: (){
+                         setState(() {
+                          if(str!="")
+                            {
+                              str=str.substring(0,str.length-1);
+                            }
+                         });
+                       }, child:  Container(
+                         height: bodyheidth * 0.05,
+                         width: width * 0.12,
+                         decoration: BoxDecoration(
+                             color: Colors.white,
+                             image: DecorationImage(
+                                 image: AssetImage("image/delete.png"),
+                                 fit: BoxFit.fill
+                             )
+                         ),
+                       ),),
                         Container(
                           child: TextButton(onPressed: () {
                             setState(() {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                    return win();
+
+                            if(str=="${config.ans[leval]}")
+                              {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return win(leval+1);
                                   },));
+                              }
                             });
                           }, child: Text("Submit", style: TextStyle(
                               fontStyle: FontStyle.italic,
@@ -137,10 +161,30 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("1",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"1";
+                            });
+                          }, child: Text("1",
                               style: TextStyle(
                                   color: Colors.white,fontSize: bodyheidth*0.025))),
                         ),
+                         Container(
+                          alignment: AlignmentDirectional.center,
+                         height: bodyheidth * 0.06,
+                         width: width * 0.09,
+                         decoration: BoxDecoration(
+                             border: Border.all(
+                                 width: 2, color: Colors.white10)
+                         ),
+                         child: TextButton(onPressed: () {
+                           setState(() {
+                             str=str+"2";
+                           });
+                         }, child: Text("2",
+                             style: TextStyle(
+                                 color: Colors.white, fontSize: bodyheidth*0.025))),
+                       ),
                         Container(
                           alignment: AlignmentDirectional.center,
                           height: bodyheidth * 0.06,
@@ -149,19 +193,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("2",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: bodyheidth*0.025))),
-                        ),
-                        Container(
-                          alignment: AlignmentDirectional.center,
-                          height: bodyheidth * 0.06,
-                          width: width * 0.09,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 2, color: Colors.white10)
-                          ),
-                          child: TextButton(onPressed: () {}, child: Text("3",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"3";
+                            });
+                          }, child: Text("3",
                               style: TextStyle(
                                   color: Colors.white, fontSize: bodyheidth*0.025))),
                         ),
@@ -173,7 +209,12 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("4",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"4";
+                              print("$str");
+                            });
+                          }, child: Text("4",
                               style: TextStyle(
                                   color: Colors.white,fontSize: bodyheidth*0.025))),
                         ),
@@ -185,7 +226,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("5",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"5";
+                            });
+                          }, child: Text("5",
                               style: TextStyle(
                                   color: Colors.white,fontSize: bodyheidth*0.025))),
                         ),
@@ -197,7 +242,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("6",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"6";
+                            });
+                          }, child: Text("6",
                               style: TextStyle(
                                   color: Colors.white, fontSize: bodyheidth*0.025))),
                         ),
@@ -209,7 +258,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("7",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                            str=str+"7";
+                            });
+                          }, child: Text("7",
                               style: TextStyle(
                                   color: Colors.white, fontSize: bodyheidth*0.025))),
                         ),
@@ -221,7 +274,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("8",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"8";
+                            });
+                          }, child: Text("8",
                               style: TextStyle(
                                   color: Colors.white, fontSize: bodyheidth*0.025))),
                         ),
@@ -233,7 +290,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("9",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"9";
+                            });
+                          }, child: Text("9",
                               style: TextStyle(
                                   color: Colors.white,fontSize: bodyheidth*0.025))),
                         ),
@@ -245,7 +306,11 @@ class _continuState extends State<continu> {
                               border: Border.all(
                                   width: 2, color: Colors.white10)
                           ),
-                          child: TextButton(onPressed: () {}, child: Text("0",
+                          child: TextButton(onPressed: () {
+                            setState(() {
+                              str=str+"0";
+                            });
+                          }, child: Text("0",
                               style: TextStyle(
                                   color: Colors.white, fontSize: bodyheidth*0.025))),
                         ),

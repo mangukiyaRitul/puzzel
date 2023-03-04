@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:puzzel/continue.dart';
 
 class level extends StatefulWidget {
-  const level({Key? key}) : super(key: key);
 
+  int leval;
+  level(this.leval);
   @override
   State<level> createState() => _levelState();
 }
 
 class _levelState extends State<level> {
+
   @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
@@ -17,6 +20,7 @@ class _levelState extends State<level> {
     double bottombarheidth=MediaQuery.of(context).padding.bottom;
 
     double bodyheidth=heidth-statusbarheidth-bottombarheidth;
+
 
     return Scaffold(
       body: SafeArea(
@@ -42,44 +46,33 @@ class _levelState extends State<level> {
                 )),
               ),
               Container(
+                // color: Colors.indigo,
+               padding: EdgeInsets.fromLTRB(0, bodyheidth*0.015, 0, 0),
                 margin: EdgeInsets.symmetric(horizontal: width*0.030),
-                height: bodyheidth*0.80,
+                height: bodyheidth*0.90,
                 width: width,
                 child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
-                        mainAxisSpacing: bodyheidth*0.020,
-                      crossAxisSpacing:  bodyheidth*0.020,
+                        mainAxisSpacing: bodyheidth*0.010,
+                      crossAxisSpacing:  bodyheidth*0.015,
                     ),
                     itemBuilder:(context, index) {
-                      return Container(
+                      return InkWell(onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return continu(widget.leval+1);
+                        },));
+                      },child: Container(
                         height: bodyheidth*0.080,
                         width: width*0.03,
                         decoration: BoxDecoration(
-                        image: DecorationImage(
-
-                          image: AssetImage("image/lock.png"),
-
+                          image: DecorationImage(
+                            image: AssetImage("image/lock.png"),
+                          ),
                         ),
-                        ),
-                      );
+                      ),);
                     },
-                itemCount: 24,),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(bottom: bodyheidth*0.035),
-                    height: bodyheidth*0.08,
-                    width: width*0.25,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("image/next.png"),
-                      )
-                    ),
-                  ),
-                ],
+                  itemCount:  50,),
               ),
             ],
           ),

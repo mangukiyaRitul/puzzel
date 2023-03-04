@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:puzzel/config.dart';
+import 'package:puzzel/continue.dart';
+import 'package:puzzel/home.dart';
 
 class win extends StatefulWidget {
 
-  const win({Key? key}) : super(key: key);
-
+  int leval;
+  win(this.leval);
   @override
   State<win> createState() => _winState();
 }
@@ -35,7 +38,7 @@ class _winState extends State<win> {
             children: [
               Container(
                 margin: EdgeInsets.fromLTRB(0, bodyheidth*0.020, 0, 0),
-                child: Text("PUZZLE 1 COMPLETED",style: TextStyle(
+                child: Text("PUZZLE ${widget.leval} COMPLETED",style: TextStyle(
                     fontSize: bodyheidth*0.03,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold,
@@ -53,22 +56,35 @@ class _winState extends State<win> {
                   )
                 ),
               ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
-                alignment: Alignment.center,
-                   height: bodyheidth*0.055,
-                width: width*0.45,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2,color: Colors.black26),
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  gradient: LinearGradient(colors: gradient)
-                ),
-                child: Text("CONTINUE",style: TextStyle(
-                    fontSize: bodyheidth*0.030,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic)),
-              ),
-              Container(
+             InkWell( onTap: () {
+               setState(() {
+                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+                   return continu(widget.leval);
+                 },));
+               });
+             },child: Container(
+               margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
+               alignment: Alignment.center,
+               height: bodyheidth*0.055,
+               width: width*0.45,
+               decoration: BoxDecoration(
+                   border: Border.all(width: 2,color: Colors.black26),
+                   borderRadius: BorderRadius.all(Radius.circular(15)),
+                   gradient: LinearGradient(colors: gradient)
+               ),
+               child: Text("CONTINUE",style: TextStyle(
+                   fontSize: bodyheidth*0.030,
+                   fontWeight: FontWeight.bold,
+                   fontStyle: FontStyle.italic)),
+             ),),
+              InkWell(  onTap: () {
+
+                setState(() {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return home();
+                  },));
+                });
+              },child: Container(
                 margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
                 alignment: Alignment.center,
                 height: bodyheidth*0.055,
@@ -82,7 +98,7 @@ class _winState extends State<win> {
                     fontSize: bodyheidth*0.030,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic)),
-              ),
+              ),),
               Container(
                 margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
                 alignment: Alignment.center,

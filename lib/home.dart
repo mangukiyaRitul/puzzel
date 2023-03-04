@@ -62,14 +62,14 @@ class _homeState extends State<home> {
                       TextButton(onPressed: (){
                        setState(() {
                          Navigator.push(context, MaterialPageRoute(builder: (context) {
-                           return continu();
+                           return continu(0);
                          },));
                        });
                       }, child: Text("CONTINUE",style: TextStyle(fontFamily: "f1",color:Colors.white,fontSize: 25,fontWeight: FontWeight.bold),)),
                       TextButton(onPressed: (){
                           setState(() {
                             Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              return level();
+                              return level(0);
                             },));
                           });
 
