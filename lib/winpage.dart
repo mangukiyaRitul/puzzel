@@ -58,7 +58,7 @@ class _winState extends State<win> {
               ),
              InkWell( onTap: () {
                setState(() {
-                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                    return continu(widget.leval);
                  },));
                });
@@ -78,11 +78,10 @@ class _winState extends State<win> {
                    fontStyle: FontStyle.italic)),
              ),),
               InkWell(  onTap: () {
-
                 setState(() {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return home();
-                  },));
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                  //   return home();
+                  Navigator.pop(context);
                 });
               },child: Container(
                 margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
@@ -96,7 +95,7 @@ class _winState extends State<win> {
                 ),
                 child: Text("MAIN MENU",style: TextStyle(
                     fontSize: bodyheidth*0.030,
-                    fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic)),
               ),),
               Container(

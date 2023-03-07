@@ -59,8 +59,8 @@ class _levelState extends State<level> {
                     ),
                     itemBuilder:(context, index) {
                       return InkWell(onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return continu(widget.leval+1);
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                          return continu(index);
                         },));
                       },child: Container(
                         height: bodyheidth*0.080,

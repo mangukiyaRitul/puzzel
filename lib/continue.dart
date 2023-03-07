@@ -6,8 +6,8 @@ class continu extends StatefulWidget {
 int level;
 continu(this.level);
 
-  @override
-  State<continu> createState() => _continuState();
+@override
+State<continu> createState() => _continuState();
 }
 
 class _continuState extends State<continu> {
@@ -49,10 +49,92 @@ class _continuState extends State<continu> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, bodyheidth*0.03, 0, 0),
-                    height: bodyheidth * 0.05,
-                    child: Image.asset("image/skip.png"),
+                  InkWell(onTap: (){
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return
+                          Dialog(
+                            child: Container(
+                              height: bodyheidth*0.25,
+                              width: width*0.50,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(  margin: EdgeInsets.fromLTRB(width*0.010, bodyheidth*0.020, 0, 0),child: Text("Skip",style: TextStyle(fontSize: bodyheidth*0.030,color: Colors.indigo,fontWeight: FontWeight.bold),))
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                    Container(margin: EdgeInsets.all(10),
+                                      child: Text("Are You Sure You Want To Skip This level?You Can play skipped leves later byclicking on PUZZLES menu from main screen"),),
+
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      InkWell(onTap: (){
+                                          setState(() {
+                                            leval++;
+                                            Navigator.pop(context);
+                                          });
+                                      },
+                                        child: Container(
+                                          margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
+                                          alignment: Alignment.center,
+                                          height: bodyheidth*0.055,
+                                          width: width*0.25,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(width: 2,color: Colors.black26),
+                                              borderRadius: BorderRadius.all(Radius.circular(10)),
+
+                                          ),
+                                          child: Text("Ok",style: TextStyle(
+                                            fontSize: bodyheidth*0.025,
+                                            //     fontWeight: FontWeight.bold,
+                                            //     fontStyle: FontStyle.italic
+                                          ))),
+                                        ),
+
+                                      Container(
+                                        margin: EdgeInsets.fromLTRB(0, bodyheidth*0.025, 0, 0),
+                                        alignment: Alignment.center,
+                                        height: bodyheidth*0.055,
+                                        width: width*0.35,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(width: 2,color: Colors.black26),
+                                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                                        ),
+                                        child:InkWell(onTap: (){
+                                          setState(() {
+                                            Navigator.pop(context);
+                                          });
+                                        },child:  Text("Cancel",style: TextStyle(
+                                          fontSize: bodyheidth*0.025,
+                                          // fontWeight: FontWeight.bold,
+                                          // fontStyle: FontStyle.italic
+                                        ),)
+                                        ),
+                                      ),
+                                    ],
+
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                      },);
+                  },
+                    child: Container(
+                      margin: EdgeInsets.fromLTRB(0, bodyheidth*0.03, 0, 0),
+                      height: bodyheidth * 0.05,
+                      child: Image.asset("image/skip.png"),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, bodyheidth*0.03, 0, 0),
@@ -70,7 +152,6 @@ class _continuState extends State<continu> {
                             fontSize: bodyheidth*0.040,
                             fontStyle: FontStyle.italic,
                             fontWeight: FontWeight.bold
-
                         )),
                   ),
                   Container(
@@ -90,9 +171,7 @@ class _continuState extends State<continu> {
                         fit: BoxFit.fill
                     )
                 ),
-
               ),
-
               Container(
                 height: bodyheidth * 0.15,
                 width: width,
@@ -137,7 +216,7 @@ class _continuState extends State<continu> {
 
                             if(str=="${config.ans[leval]}")
                               {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                                     return win(leval+1);
                                   },));
                               }
